@@ -42,7 +42,7 @@ function setup() {
   trex.addAnimation("collided", trex_collided);
   trex.scale = 0.5;
   
-  ground = createSprite(200,180,400,20);
+  ground = createSprite(300,180,600,20);
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
   ground.velocityX = -(6 + 3*score/100);
@@ -59,7 +59,7 @@ function setup() {
   gameOver.visible = false;
   restart.visible = false;
   
-  invisibleGround = createSprite(200,190,400,10);
+  invisibleGround = createSprite(300,190,600,10);
   invisibleGround.visible = false;
   
   cloudsGroup = new Group();
@@ -75,20 +75,20 @@ function draw() {
   trex.x=camera.position.x-250
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
-    camera.position.x+=6
+   // camera.position.x+=6
     
     ground.velocityX = -(6 + 3*score/100);
   
-    if(keyDown("space") && trex.y >= 159) {
+    if(keyDown("space") ) {
       trex.velocityY = -12;
     }
   
     trex.velocityY = trex.velocityY + 0.8
   
-    if (camera.position.x>ground.width/2+300){
-      camera.position.x=300
-      obstaclesGroup.destroyEach();
-      cloudsGroup.destroyEach();
+    if (ground.x<ground.width/2+300){
+     ground.x=300
+      //obstaclesGroup.destroyEach();
+      //cloudsGroup.destroyEach();
     }
   
     trex.collide(invisibleGround);
